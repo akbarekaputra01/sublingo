@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block title %}Sign Language Translator{% endblock
+%} {% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/user.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+{% endblock %} {% block content %}
+<div class="user-container">
+  <div class="header">
+    <h1>Sublens Online - Sign Language Translator</h1>
+    <p>Show your hand sign to the camera to translate it to text</p>
+  </div>
+
+  <div class="main-content">
+    <div class="camera-section">
+      <div class="video-wrapper">
+        <video id="video" autoplay playsinline></video>
+        <div id="loading" class="loading">
+          <div class="spinner"></div>
+          <p>Initializing camera...</p>
+        </div>
+        <div id="resultIndicator" class="result-indicator hidden">
+          <span id="detectedChar"></span>
+          <span class="confidence" id="detectedConfidence"></span>
+        </div>
+      </div>
+
+      <!-- Camera Controls -->
+      <div class="camera-controls">
+        <button id="toggleCamera" class="btn btn-primary">Start Camera</button>
+        <div class="camera-options">
+          <select id="cameraSelect" class="camera-select">
+            <option value="">Select Camera</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="output-section">
+      <div class="text-output">
+        <h2>Translated Text</h2>
+        <div id="translatedText" class="text-content"></div>
+        <div class="text-actions">
+          <button
+            id="speakText"
+            class="btn btn-icon"
+            title="Speak text"
+            disabled
+          >
+            <i class="fas fa-volume-up"></i>
+          </button>
+          <button id="copyText" class="btn btn-icon" title="Copy text">
+            <i class="fas fa-copy"></i>
+          </button>
+          <button id="clearText" class="btn btn-icon" title="Clear text">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/user.js') }}"></script>
+{% endblock %}

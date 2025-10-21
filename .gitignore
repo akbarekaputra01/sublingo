@@ -1,0 +1,70 @@
+# -----------------------------
+# Python & Cache
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# -----------------------------
+# Virtual Environments (Including Anaconda)
+# -----------------------------
+venv/
+env/
+envs/
+.venv/
+.conda/
+condaenv/
+*.conda
+*.yaml   # environment.yml export
+*.yml
+
+# -----------------------------
+# Jupyter Notebook Checkpoints
+# -----------------------------
+.ipynb_checkpoints/
+
+# -----------------------------
+# Machine Learning / AI Model Files
+# -----------------------------
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.pt
+*.pth
+*.p
+*.joblib
+*.model
+*.tflite
+*.onnx
+
+# Large File
+dataASL.pickle
+model.p
+
+# -----------------------------
+# Dataset / Output
+# -----------------------------
+huggingface/
+dataset/
+data/
+output/
+results/
+logs/
+*.log
+
+# -----------------------------
+# IDE / System Files
+# -----------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Other optional
+# -----------------------------
+*.zip
+*.tar
+*.rar

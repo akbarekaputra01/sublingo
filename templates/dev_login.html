@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block title %}Developer Login{% endblock %} {%
+block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/login.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="login-container">
+  <div class="login-card">
+    <h1>Developer Access</h1>
+    <p>Please enter the password to access developer mode</p>
+
+    <form id="loginForm">
+      <div class="input-group">
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter password"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Access Developer Mode
+      </button>
+    </form>
+
+    <p class="back-link">
+      <a href="{{ url_for('user_page') }}">← Back to User Mode</a>
+    </p>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("loginForm");
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const password = document.getElementById("password").value;
+      window.location.href = "/dev?password=" + encodeURIComponent(password);
+    });
+  });
+</script>
+{% endblock %}

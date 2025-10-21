@@ -1,0 +1,121 @@
+{% extends "base.html" %} {% block title %}Developer Mode{% endblock %} {% block
+styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dev.css') }}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <i class="fas fa-hands logo-icon"></i>
+      <h1>Sublens Online - Developer Mode</h1>
+    </div>
+    <p class="subtitle">
+      Real-time sign language detection with MediaPipe landmarks visualization
+    </p>
+  </div>
+
+  <div class="grid-container">
+    <!-- Camera Original -->
+    <div class="video-panel">
+      <h2><i class="fas fa-video"></i> Original Camera</h2>
+      <div class="video-container">
+        <video id="videoOriginal" autoplay playsinline></video>
+        <div id="noCameraOriginal" class="no-camera" style="display: none">
+          <i class="fas fa-camera-slash"></i>
+          <p>No camera available</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera dengan MediaPipe -->
+    <div class="video-panel">
+      <h2><i class="fas fa-project-diagram"></i> MediaPipe Visualization</h2>
+      <div class="video-container">
+        <video id="video" autoplay playsinline style="display: none"></video>
+        <canvas id="overlay" class="overlay"></canvas>
+        <div id="noCamera" class="no-camera" style="display: none">
+          <i class="fas fa-camera-slash"></i>
+          <p>No camera available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Camera Controls -->
+  <div class="camera-controls">
+    <button id="toggleCamera" class="btn btn-primary">
+      <i class="fas fa-play"></i> Start Camera
+    </button>
+    <div class="camera-options">
+      <select id="cameraSelect" class="camera-select">
+        <option value="">Select Camera</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="data-panel">
+      <h2><i class="fas fa-chart-bar"></i> Detection Data</h2>
+      <div class="data-container">
+        <div class="prediction-data">
+          <h3>Prediction</h3>
+          <p>Character: <span id="predictedChar">-</span></p>
+          <p>Confidence: <span id="confidence">0%</span></p>
+          <div class="confidence-bar">
+            <div
+              id="confidenceBar"
+              class="confidence-level"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="landmarks-data">
+          <h3>Hand Landmarks</h3>
+          <div class="landmarks-container">
+            <pre id="landmarksData">No landmarks detected</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-output">
+      <h2><i class="fas fa-text"></i> Translated Text</h2>
+      <div class="text-container">
+        <div id="translatedText" class="text-content"></div>
+      </div>
+      <div class="text-controls">
+        <button id="speakBtn" class="btn btn-icon" title="Speak text">
+          <i class="fas fa-volume-up"></i>
+        </button>
+        <button id="copyBtn" class="btn btn-icon" title="Copy text">
+          <i class="fas fa-copy"></i>
+        </button>
+        <button id="clearBtn" class="btn btn-icon" title="Clear text">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">
+      <div id="totalPredictions" class="stat-value">0</div>
+      <div class="stat-label">Total Predictions</div>
+    </div>
+    <div class="stat-item">
+      <div id="processingTime" class="stat-value">0 ms</div>
+      <div class="stat-label">Avg Processing Time</div>
+    </div>
+    <div class="stat-item">
+      <div id="status" class="stat-value">Stopped</div>
+      <div class="stat-label">Status</div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/dev.js') }}"></script>
+{% endblock %}
